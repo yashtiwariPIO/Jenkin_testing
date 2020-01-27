@@ -1,0 +1,61 @@
+<!Docktype html>
+<head></head>
+<body>
+
+<p style="color:red;font-size:20px;text-align:right" id="demo"></p>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date()
+
+var Currhours = countDownDate.getHours();
+var Currminutes = countDownDate.getMinutes();
+    Currminutes+=90;
+    
+ var c=countDownDate.setMinutes(Currminutes);
+    
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+    
+  // Find the distance between now and the count down date
+  var distance = c - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = +hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+
+function UserAction() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+         if (this.readyState == 4 && this.status == 200) {
+             alert(this.responseText);
+         }
+    };
+    xhttp.open("POST", "Your Rest URL Here", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send("Your JSON Data Here");
+}
+</script>
+<button type="submit" onclick="UserAction()">Search</button>
+<div style="width:500px;height:500px;" id="demo1>
+  
+</div>
+</body>
+<html>
